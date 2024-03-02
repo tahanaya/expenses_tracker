@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Expenses History
+{% endblock %}
+
+{% block main %}
+    <h1>Expenses History</h1>
+
+    {% if expenses %}
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                    <tr>
+                        <td>{{ expense['category'] }}</td>
+                        <td>{{ usd(expense['amount']) }}</td>
+                        <td>{{ expense['timestamp'] }}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>{{ usd(total_amount) }}</strong></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <p>No expenses recorded.</p>
+    {% endif %}
+{% endblock %}

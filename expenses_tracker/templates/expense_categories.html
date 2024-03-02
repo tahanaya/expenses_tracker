@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Expense Categories
+{% endblock %}
+
+{% block main %}
+    <h1>Expense Categories</h1>
+
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
+                <li>{{ category['name'] }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No expense categories found.</p>
+    {% endif %}
+{% endblock %}

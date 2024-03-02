@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Expense Summary
+{% endblock %}
+
+{% block main %}
+    <h1>Expense Summary</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Expenses</h3>
+            {% if expenses %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for expense in expenses %}
+                            <tr>
+                                <td>{{ expense['category'] }}</td>
+                                <td>{{ usd(expense['total_amount']) }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>No expenses recorded.</p>
+            {% endif %}
+        </div>
+
+        <div class="col-md-6">
+            <h3>Summary</h3>
+            <p>Total Expenses: {{ usd(total_expenses) }}</p>
+            <p>Cash Balance: {{ usd(cash_balance) }}</p>
+
+            {% if most_expensive_category %}
+                <p>Most Expensive Category: {{ most_expensive_category }}</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
